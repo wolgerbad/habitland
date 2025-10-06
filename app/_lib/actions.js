@@ -40,8 +40,8 @@ export async function addNewHabit(formData) {
   console.log(d, error);
 }
 
-export async function handleDeleteLog(date) {
-  const { error } = await supabase.from('habit_logs').delete().eq('date', date);
+export async function handleDeleteLog(id) {
+  const { error } = await supabase.from('habit_logs').delete().eq('id', id);
 
   if (error) console.error(error.message);
 

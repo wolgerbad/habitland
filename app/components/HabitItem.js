@@ -40,11 +40,18 @@ export default function HabitItem({ habit, habitLogs }) {
   const completedDays = data.filter((d) => d.completed === 1).length;
   const completedRate = Math.floor((completedDays / 30) * 100);
   const totalCompletion = habitLogs.length;
+  const currentStreak = data
+    .map((d) => (d.completed ? 1 : 0))
+    .join('')
+    .split('0')
+    .pop().length;
 
-  const todaysLog = data.at(-1);
+  const todaysLog = habitLogs.at(-1);
+
+  console.log(habitLogs.at(-1));
 
   const [isCompletedToday, setIsCompletedToday] = useState(() =>
-    todaysLog.completed ? true : false
+    todaysLog?.completed ? true : false
   );
   const [hovered, setHovered] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -52,9 +59,10 @@ export default function HabitItem({ habit, habitLogs }) {
   const { id, name } = habit;
 
   function handleLog(log) {
-    const { date, completed } = log;
+    console.log('log:', log);
+    const { date, completed, id } = log;
 
-    completed ? handleDeleteLog(date) : handleAddLog(date, id);
+    completed ? handleDeleteLog(id) : handleAddLog(date, id);
   }
 
   function handleDeleteHabit() {
@@ -64,7 +72,7 @@ export default function HabitItem({ habit, habitLogs }) {
 
   useEffect(
     function () {
-      setIsCompletedToday(todaysLog.completed ? true : false);
+      setIsCompletedToday(todaysLog?.completed ? true : false);
     },
     [todaysLog]
   );
@@ -87,14 +95,16 @@ export default function HabitItem({ habit, habitLogs }) {
             {trophy}
           </span>
           <span>
-            <FaFire className="text-red-600 text-xl " />
+            <FaFire className="text-red-600 text-xl inline-block mr-1" />
+            {currentStreak}
           </span>
         </div>
       </header>
       <button
+        key={id}
         onClick={() => handleLog(todaysLog)}
         className={`w-full justify-center items-center gap-2 flex px-4 py-2 text-lg text-gray-700 ${
-          todaysLog.completed
+          todaysLog?.completed
             ? 'bg-green-500 hover:bg-green-600 text-white'
             : 'bg-gray-100 hover:bg-gray-200'
         }`}
