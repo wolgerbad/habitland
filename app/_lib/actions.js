@@ -22,8 +22,8 @@ function getLast30DaysLogs(habitLogs) {
   });
 }
 
-export async function addNewHabit(formData) {
-  const name = formData.get('name');
+export async function addNewHabit(formData, habitName = '') {
+  const name = formData?.get('name') || habitName;
   const data = getLast30DaysLogs([]);
 
   const { d, error } = await supabase
@@ -37,7 +37,6 @@ export async function addNewHabit(formData) {
     .select();
 
   revalidatePath('/');
-  console.log(d, error);
 }
 
 export async function handleDeleteLog(id) {
@@ -64,6 +63,20 @@ export async function handleAddLog(date, habitId) {
 export async function deleteHabit(id) {
   const { err } = await supabase.from('habit_logs').delete().eq('habit_id', id);
   const { error } = await supabase.from('habits').delete().eq('id', id);
+
+  if (error) console.error(error.message);
+
+  revalidatePath('/');
+}
+
+export async function updateHabit(id, title) {
+  if (title.length < 2) return null;
+
+  const { data, error } = await supabase
+    .from('habits')
+    .update({ name: title })
+    .eq('id', id)
+    .select();
 
   if (error) console.error(error.message);
 

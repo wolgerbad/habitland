@@ -1,5 +1,6 @@
+import { DarkModeContextProvider } from './components/DarkModeContext';
+import Theme from './components/Theme';
 import './globals.css';
-import { HabitsContextProvider } from './components/HabitsContext';
 
 export const metadata = {
   title: 'HabitLand',
@@ -8,10 +9,13 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
-      <body>
-        <HabitsContextProvider>{children}</HabitsContextProvider>
-      </body>
-    </html>
+    <DarkModeContextProvider>
+      <html lang="en" className="light">
+        <body className="bg-bgPrimary ">
+          <Theme />
+          {children}
+        </body>
+      </html>
+    </DarkModeContextProvider>
   );
 }

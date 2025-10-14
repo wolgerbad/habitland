@@ -1,3 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.light {
+  --fg-primary: 0, 0, 0;
+  --fg-sub-header: 156, 163, 175;
+  --hover-primary: 229, 231, 235;
+  --hover-secondary: 229, 231, 235;
+  --border-primary: 229, 231, 235;
+  --fg-secondary: 229, 231, 235;
+  --bg-button: 243, 244, 246;
+  --bg-secondary: 243, 244, 246;
+  --bg-primary: 255, 255, 255;
+  --item-bg: transparent;
+}
+
+.dark {
+  --fg-primary: 255, 255, 255;
+  --fg-sub-header: 156, 163, 175;
+  --hover-primary: 26, 0, 175;
+  --hover-secondary: 110, 20, 310;
+  --border-primary: 229, 231, 235;
+  --fg-secondary: 55, 65, 81;
+  --bg-button: 27, 0, 155;
+  --bg-secondary: 104, 0, 255;
+  --bg-primary: 0, 0, 0;
+  --item-bg: 32, 32, 32, 0.8;
+}

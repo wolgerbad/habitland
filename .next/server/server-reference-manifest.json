@@ -1,40 +1,8 @@
 {
   "node": {
-    "e5e8e12b02d7474f3e21625c9252cdb49cd077d4": {
-      "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    },
-    "14e744fe1009a387415b31ff9ef060bb10d33ee0": {
-      "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    },
-    "bace1f28bc8f531f067a071a4a16060fd6655a7e": {
-      "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    },
     "ccf4e70042ed25c7f3b3d22316535306f2e40e3e": {
       "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
-      },
-      "layer": {
-        "app/page": "action-browser"
-      }
-    },
-    "e28193fbae2a8b38795b675aa306510584147ca4": {
-      "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22updateHabit%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
         "app/page": "action-browser"
@@ -42,7 +10,31 @@
     },
     "d9727c6c78e0d3d514d97185c1d94b64ce3dfdb4": {
       "workers": {
-        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22updateHabit%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    },
+    "e28193fbae2a8b38795b675aa306510584147ca4": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22updateHabit%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    },
+    "e5e8e12b02d7474f3e21625c9252cdb49cd077d4": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22updateHabit%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
+      },
+      "layer": {
+        "app/page": "action-browser"
+      }
+    },
+    "d084e71761faaa5ca759b8197453d25a2ca482ce": {
+      "workers": {
+        "app/page": "(action-browser)/./node_modules/next/dist/build/webpack/loaders/next-flight-action-entry-loader.js?actions=%5B%5B%22C%3A%5C%5CUsers%5C%5CEmir%20I%C5%9F%C4%B1k%5C%5CDesktop%5C%5Creact-feature-playaround%5C%5Chabitland%5C%5Capp%5C%5C_lib%5C%5Cactions.js%22%2C%5B%22handleAddLog%22%2C%22updateHabit%22%2C%22deleteHabit%22%2C%22handleDeleteLog%22%2C%22addNewHabit%22%5D%5D%5D&__client_imported__=true!"
       },
       "layer": {
         "app/page": "action-browser"
@@ -50,5 +42,5 @@
     }
   },
   "edge": {},
-  "encryptionKey": "nYVEzFBmOrXKzndf0GvqEzuLEwGd1//A0k3YuNSrays="
+  "encryptionKey": "UnLkUG+v8oiefCmHg+awmUFU41ls/9lE9/eWD7V5Jo8="
 }

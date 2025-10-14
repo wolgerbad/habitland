@@ -8,23 +8,24 @@ function AddNewHabit() {
   const [isOpen, setIsOpen] = useState(false);
 
   async function handleAction(formData) {
-    setIsOpen(false);
-
     await addNewHabit(formData);
+    setIsOpen(false);
   }
 
   return (
     <>
       <div
         onClick={() => setIsOpen(true)}
-        className="bg-gray-100 p-4 text-center text-gray-500 text-lg rounded-lg cursor-pointer hover:bg-gray-200 shadow-lg transition-all duration-900 ease m-4"
+        className="bg-bgButton p-4 text-center text-fgPrimary text-lg rounded-lg cursor-pointer hover:bg-hov shadow-lg transition-all duration-900 ease m-4"
       >
         ➕ Create New Habit
       </div>
       {isOpen && (
         <Modal onClose={() => setIsOpen(false)} title="Create New Habit">
           <form action={handleAction}>
-            <label className="block mb-2 font-medium">Habit Name</label>
+            <label className="block mb-2 font-medium text-fgPrimary">
+              Habit Name
+            </label>
             <input
               name="name"
               type="text"
@@ -32,7 +33,12 @@ function AddNewHabit() {
               placeholder="e.g., Drink Water"
             />
             <div className="flex justify-end gap-2">
-              <button className="bg-gray-200 p-2 rounded-lg">Cancel</button>
+              <button
+                className="bg-gray-200 p-2 rounded-lg"
+                onClick={() => setIsOpen(false)}
+              >
+                Cancel
+              </button>
               <button className="bg-purple-400 p-2 rounded-lg">
                 Create Habit
               </button>

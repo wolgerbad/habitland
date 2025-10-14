@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useOptimistic, useState } from 'react';
 import { FaCalendar, FaEdit, FaFire, FaTrash, FaTrophy } from 'react-icons/fa';
 import { SiTicktick } from 'react-icons/si';
 import Modal from './Modal';
@@ -27,9 +27,11 @@ function getLastXDaysLogs(logs, x) {
   return lastXDays.map((day) => {
     const dateStr = format(day, 'yyyy-MM-dd');
     const log = logs?.find((log) => log.date === dateStr);
+
     return {
       date: dateStr,
       completed: log ? log.completed : 0,
+      id: log?.id ? log.id : null,
     };
   });
 }
@@ -46,74 +48,72 @@ export default function HabitItem({ habit, habitLogs }) {
     .split('0')
     .pop().length;
 
-  const todaysLog = habitLogs.at(-1);
+  const todaysLog = data?.at(-1);
 
-  console.log(habitLogs.at(-1));
-
-  const [isCompletedToday, setIsCompletedToday] = useState(() =>
-    todaysLog?.completed ? true : false
-  );
+  const isCompletedToday = todaysLog.completed;
   const [hovered, setHovered] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const trophy = habitLogs.reduce((acc, cur) => acc + cur.completed, 0);
+
+  const trophy = data.reduce((acc, cur) => acc + cur.completed, 0);
   const { id, name } = habit;
-
-  function handleLog(log) {
-    console.log('log:', log);
-    const { date, completed, id } = log;
-
-    completed ? handleDeleteLog(id) : handleAddLog(date, id);
-  }
 
   function handleDeleteHabit() {
     setIsModalOpen(false);
     deleteHabit(habit.id);
   }
 
-  useEffect(
-    function () {
-      setIsCompletedToday(todaysLog?.completed ? true : false);
-    },
-    [todaysLog]
-  );
+  async function handleLog(log) {
+    {
+      log.completed === 1
+        ? await handleDeleteLog(log.id)
+        : await handleAddLog(log.date, id);
+    }
+  }
 
   return (
     <>
       <header className="flex justify-between mb-4">
-        <h2>{name}</h2>
+        <h2 className="text-fgPrimary">{name}</h2>
         <div className="flex items-center gap-3">
           <button
-            className="p-2 bg-gray-100 rounded-sm hover:bg-gray-200 text-gray-700"
+            className="p-2 bg-bgSecondary rounded-sm hover:bg-hoverSecondary text-fgPrimary"
             onClick={() => {
               setIsModalOpen(true);
             }}
           >
             Open details
           </button>
-          <span>
+          <span className="text-fgPrimary">
             <FaTrophy className="text-yellow-500 text-xl inline-block mr-1" />
             {trophy}
           </span>
-          <span>
+          <span className="text-fgPrimary">
             <FaFire className="text-red-600 text-xl inline-block mr-1" />
             {currentStreak}
           </span>
         </div>
       </header>
-      <button
-        key={id}
-        onClick={() => handleLog(todaysLog)}
-        className={`w-full justify-center items-center gap-2 flex px-4 py-2 text-lg text-gray-700 ${
-          todaysLog?.completed
-            ? 'bg-green-500 hover:bg-green-600 text-white'
-            : 'bg-gray-100 hover:bg-gray-200'
-        }`}
+      <form
+        action={async () => {
+          todaysLog.completed === 1
+            ? await handleDeleteLog(todaysLog.id)
+            : await handleAddLog(todaysLog.date, id);
+        }}
       >
-        <SiTicktick />
-        {!isCompletedToday ? 'Mark Complete' : 'Completed Today!'}
-      </button>
+        <button
+          key={id}
+          className={`w-full justify-center items-center gap-2 flex px-4 py-2 text-lg ${
+            todaysLog?.completed
+              ? 'bg-green-500 hover:bg-green-600 text-white'
+              : 'text-fgPrimary bg-bgButton hover:bg-hoverPrimary'
+          }`}
+        >
+          <SiTicktick />
+          {!isCompletedToday ? 'Mark Complete' : 'Completed Today!'}
+        </button>
+      </form>
       {isModalOpen && (
-        <Modal onClose={() => setIsModalOpen(false)} title={name}>
+        <Modal onClose={() => setIsModalOpen(false)} title={name} id={id}>
           <div className="grid grid-cols-2 gap-4 mb-4">
             <div className="bg-blue-100 p-4 flex flex-col text-blue-800 font-semibold rounded-lg">
               <span className="flex items-center gap-1 mb-2">
@@ -136,7 +136,7 @@ export default function HabitItem({ habit, habitLogs }) {
           <div className="w-full h-80">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart
-                className="border-t-2 border-gray-200 p-2"
+                className="border-t-2 border-borderPrimary p-2"
                 onClick={(x) => console.log(x)}
                 width={500}
                 height={300}
@@ -148,15 +148,15 @@ export default function HabitItem({ habit, habitLogs }) {
                   bottom: 5,
                 }}
               >
-                <XAxis dataKey="date" />
+                <XAxis dataKey="date" className="text-fgPrimary" />
                 <Tooltip />
                 <Legend />
                 <Bar dataKey="completed" fill="#22c55e" />
               </BarChart>
             </ResponsiveContainer>
           </div>
-          <div className="max-w-[30rem] mx-auto border-b-2 py-6 border-gray-200 mb-4">
-            <h1 className="mb-4">Graph (last 90 days)</h1>
+          <div className="max-w-[30rem] mx-auto border-b-2 py-6 border-borderPrimary mb-4">
+            <h1 className="mb-4 text-fgPrimary">Graph (last 90 days)</h1>
             <div className=" flex gap-2 flex-wrap ">
               {last90Days.map((d) => (
                 <div
@@ -165,14 +165,21 @@ export default function HabitItem({ habit, habitLogs }) {
                   onMouseEnter={() => setHovered(d.date)}
                   onMouseLeave={() => setHovered(null)}
                 >
-                  <div
-                    className={`w-8 h-8 rounded-md cursor-pointer ${
-                      d.completed
-                        ? 'bg-green-500 hover:bg-green-600'
-                        : 'bg-gray-200 hover:bg-gray-300'
-                    }`}
-                    onClick={() => handleLog(d)}
-                  ></div>
+                  <form
+                    action={async () => {
+                      d.completed === 1
+                        ? await handleDeleteLog(d.id)
+                        : await handleAddLog(d.date, id);
+                    }}
+                  >
+                    <button
+                      className={`w-8 h-8 rounded-md cursor-pointer ${
+                        d.completed
+                          ? 'bg-green-500 hover:bg-green-600'
+                          : 'bg-gray-200 hover:bg-gray-300'
+                      }`}
+                    ></button>
+                  </form>
                   {hovered === d.date && (
                     <div
                       className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 
@@ -194,10 +201,6 @@ export default function HabitItem({ habit, habitLogs }) {
             >
               <FaTrash />
               Delete habit
-            </button>
-            <button className="flex items-center gap-1 hover:bg-blue-100 p-1 rounded-md text-blue-500">
-              <FaEdit />
-              Edit habit
             </button>
           </div>
         </Modal>
