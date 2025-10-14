@@ -6,7 +6,7 @@ export default async function HabitItemContainer({ habit }) {
   console.log('habitlogs:', habitLogs);
 
   return (
-    <div className="border-2 border-fgSecondary rounded-sm m-4 p-6 bg-itemBg scale-95 hover:scale-100 duration-200">
+    <div className="">
       <HabitItem habit={habit} habitLogs={habitLogs} />
     </div>
   );

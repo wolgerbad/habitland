@@ -72,46 +72,48 @@ export default function HabitItem({ habit, habitLogs }) {
 
   return (
     <>
-      <header className="flex justify-between mb-4">
-        <h2 className="text-fgPrimary">{name}</h2>
-        <div className="flex items-center gap-3">
-          <button
-            className="p-2 bg-bgSecondary rounded-sm hover:bg-hoverSecondary text-fgPrimary"
-            onClick={() => {
-              setIsModalOpen(true);
-            }}
-          >
-            Open details
-          </button>
-          <span className="text-fgPrimary">
-            <FaTrophy className="text-yellow-500 text-xl inline-block mr-1" />
-            {trophy}
-          </span>
-          <span className="text-fgPrimary">
-            <FaFire className="text-red-600 text-xl inline-block mr-1" />
-            {currentStreak}
-          </span>
-        </div>
-      </header>
-      <form
-        action={async () => {
-          todaysLog.completed === 1
-            ? await handleDeleteLog(todaysLog.id)
-            : await handleAddLog(todaysLog.date, id);
-        }}
-      >
-        <button
-          key={id}
-          className={`w-full justify-center items-center gap-2 flex px-4 py-2 text-lg ${
-            todaysLog?.completed
-              ? 'bg-green-500 hover:bg-green-600 text-white'
-              : 'text-fgPrimary bg-bgButton hover:bg-hoverPrimary'
-          }`}
+      <div className="scale-95 hover:scale-100 duration-200 border-2 border-fgSecondary rounded-sm m-4 p-6 bg-itemBg ">
+        <header className="flex justify-between mb-4">
+          <h2 className="text-fgPrimary">{name}</h2>
+          <div className="flex items-center gap-3">
+            <button
+              className="p-2 bg-bgSecondary rounded-sm hover:bg-hoverSecondary text-fgPrimary"
+              onClick={() => {
+                setIsModalOpen(true);
+              }}
+            >
+              Open details
+            </button>
+            <span className="text-fgPrimary">
+              <FaTrophy className="text-yellow-500 text-xl inline-block mr-1" />
+              {trophy}
+            </span>
+            <span className="text-fgPrimary">
+              <FaFire className="text-red-600 text-xl inline-block mr-1" />
+              {currentStreak}
+            </span>
+          </div>
+        </header>
+        <form
+          action={async () => {
+            todaysLog.completed === 1
+              ? await handleDeleteLog(todaysLog.id)
+              : await handleAddLog(todaysLog.date, id);
+          }}
         >
-          <SiTicktick />
-          {!isCompletedToday ? 'Mark Complete' : 'Completed Today!'}
-        </button>
-      </form>
+          <button
+            key={id}
+            className={`w-full justify-center items-center gap-2 flex px-4 py-2 text-lg ${
+              todaysLog?.completed
+                ? 'bg-green-500 hover:bg-green-600 text-white'
+                : 'text-fgPrimary bg-bgButton hover:bg-hoverPrimary'
+            }`}
+          >
+            <SiTicktick />
+            {!isCompletedToday ? 'Mark Complete' : 'Completed Today!'}
+          </button>
+        </form>
+      </div>
       {isModalOpen && (
         <Modal onClose={() => setIsModalOpen(false)} title={name} id={id}>
           <div className="grid grid-cols-2 gap-4 mb-4">
