@@ -15,6 +15,7 @@ module.exports = {
         hoverPrimary: 'rgba(var(--hover-primary))',
         hoverSecondary: 'rgba(var(--hover-secondary))',
         bgButton: 'rgba(var(--bg-button))',
+        buttonHover: 'rgba(var(--hover-button))',
         bgPrimary: 'rgba(var(--bg-primary))',
         itemBg: 'rgba(var(--item-bg))',
         bgSecondary: 'rgba(var(--bg-secondary))',

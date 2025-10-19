@@ -1,17 +1,32 @@
 'use client';
 
-import { useState } from 'react';
+import { startTransition, useState } from 'react';
 import { FaEdit } from 'react-icons/fa';
 import { TiTickOutline } from 'react-icons/ti';
 import { updateHabit } from '../_lib/actions';
 
-function Modal({ onClose, title, children, id = null }) {
+function Modal({
+  onClose,
+  title,
+  children,
+  id,
+  handleOptimisticHabitName,
+  optimisticHabits,
+  isEditable = false,
+}) {
   const [isEditing, setIsEditing] = useState(false);
   const [titleClient, setTitleClient] = useState(() => title);
+  console.log('habitName:', title);
 
   async function handleEditTitle() {
-    await updateHabit(id, titleClient);
+    const habitNameExists = optimisticHabits.find(
+      (habit) => habit.name === titleClient
+    );
+    if (!titleClient || titleClient === title || habitNameExists) return;
+    startTransition(() => handleOptimisticHabitName(titleClient));
     setIsEditing((prev) => !prev);
+
+    await updateHabit(id, titleClient);
   }
 
   return (
@@ -30,7 +45,7 @@ function Modal({ onClose, title, children, id = null }) {
         >
           &times;
         </button>
-        {title && isEditing ? (
+        {title && isEditing && isEditable ? (
           <span className="flex items-center gap-2 w-fit mb-4 text-fgPrimary">
             <input
               type="text"
@@ -52,7 +67,7 @@ function Modal({ onClose, title, children, id = null }) {
             onClick={() => setIsEditing(true)}
           >
             {title}
-            <FaEdit className="text-xl cursor-pointer" />
+            {isEditable && <FaEdit className="text-xl cursor-pointer" />}
           </span>
         )}
         <div>{children}</div>

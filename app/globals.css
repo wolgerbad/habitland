@@ -10,7 +10,7 @@
   --border-primary: 229, 231, 235;
   --fg-secondary: 229, 231, 235;
   --bg-button: 243, 244, 246;
-  --bg-secondary: 243, 244, 246;
+  --hover-button: 229, 231, 235;
   --bg-primary: 255, 255, 255;
   --item-bg: transparent;
 }
@@ -23,7 +23,7 @@
   --border-primary: 229, 231, 235;
   --fg-secondary: 55, 65, 81;
   --bg-button: 27, 0, 155;
-  --bg-secondary: 104, 0, 255;
+  --hover-button: 17, 0, 115;
   --bg-primary: 0, 0, 0;
   --item-bg: 32, 32, 32, 0.8;
 }

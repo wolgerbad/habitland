@@ -11,13 +11,10 @@ export async function getHabits() {
   return habits;
 }
 
-export async function getHabitLog(id) {
-  console.log('getHabitLog');
-  let { data, error } = await supabase
-    .from('habit_logs')
-    .select('*')
-    .eq('habit_id', id);
+export async function getHabitLogs() {
+  let { data, error } = await supabase.from('habit_logs').select('*');
 
   if (error) throw new Error(error.message);
+
   return data;
 }

@@ -1,14 +1,14 @@
+import { getHabitLogs, getHabits } from '../_lib/helpers';
 import AddNewHabit from './AddNewHabit';
 import HabitList from './HabitList';
-import Modal from './Modal';
 import QuickAdd from './QuickAdd';
 
-export default function Main() {
+export default async function Main() {
+  const habits = await getHabits();
+  const habitLogs = await getHabitLogs();
   return (
     <div>
-      <QuickAdd />
-      <HabitList />
-      <AddNewHabit />
+      <HabitList habits={habits} habitLogs={habitLogs} />
     </div>
   );
 }

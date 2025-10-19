@@ -10,8 +10,8 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <DarkModeContextProvider>
-      <html lang="en" className="light">
-        <body className="bg-bgPrimary ">
+      <html lang="en">
+        <body className="bg-bgPrimary light">
           <Theme />
           {children}
         </body>

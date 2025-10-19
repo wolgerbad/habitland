@@ -22,40 +22,17 @@ function getLast30DaysLogs(habitLogs) {
   });
 }
 
-export async function addNewHabit(formData, habitName = '') {
-  const name = formData?.get('name') || habitName;
-  const data = getLast30DaysLogs([]);
+// ******************HABIT OPERATIONS**************************
 
+export async function addNewHabit(habitName) {
   const { d, error } = await supabase
     .from('habits')
     .insert([
       {
-        name,
-        data,
+        name: habitName,
       },
     ])
     .select();
-
-  revalidatePath('/');
-}
-
-export async function handleDeleteLog(id) {
-  const { error } = await supabase.from('habit_logs').delete().eq('id', id);
-
-  if (error) console.error(error.message);
-
-  revalidatePath('/');
-}
-
-export async function handleAddLog(date, habitId) {
-  const { data, error } = await supabase
-    .from('habit_logs')
-    .insert([{ date, completed: 1, habit_id: habitId }])
-    .select();
-
-  if (error) console.error(error.message);
-
-  console.log(data);
 
   revalidatePath('/');
 }
@@ -75,6 +52,38 @@ export async function updateHabit(id, title) {
   const { data, error } = await supabase
     .from('habits')
     .update({ name: title })
+    .eq('id', id)
+    .select();
+
+  if (error) console.error(error.message);
+
+  revalidatePath('/');
+}
+
+// ****************HABITLOG OPERATIONS********************
+
+export async function deleteLog(id) {
+  const { error } = await supabase.from('habit_logs').delete().eq('id', id);
+
+  if (error) console.error('error:', error.message);
+  revalidatePath('/');
+}
+
+export async function addNewLog(newLog) {
+  const { data, error } = await supabase
+    .from('habit_logs')
+    .insert([newLog])
+    .select();
+
+  if (error) console.error(error.message);
+
+  revalidatePath('/');
+}
+
+export async function updateLog(completed, id) {
+  const { data, error } = await supabase
+    .from('habit_logs')
+    .update({ completed })
     .eq('id', id)
     .select();
 
