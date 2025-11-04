@@ -4,6 +4,8 @@ import { eachDayOfInterval, format, subDays } from 'date-fns';
 import { createHabit } from './helpers';
 import { supabase } from './supabase';
 import { revalidatePath } from 'next/cache';
+import jwt from 'jsonwebtoken';
+import { cookies } from 'next/headers';
 
 function getLast30DaysLogs(habitLogs) {
   const today = new Date();
@@ -24,12 +26,13 @@ function getLast30DaysLogs(habitLogs) {
 
 // ******************HABIT OPERATIONS**************************
 
-export async function addNewHabit(habitName) {
+export async function addNewHabit(habitName, userId) {
   const { d, error } = await supabase
     .from('habits')
     .insert([
       {
         name: habitName,
+        user_id: userId,
       },
     ])
     .select();
@@ -90,4 +93,12 @@ export async function updateLog(completed, id) {
   if (error) console.error(error.message);
 
   revalidatePath('/');
+}
+
+export async function getCookie(cookie) {
+  const cookieStore = cookies();
+  const cookieVal = cookieStore.get(cookie)?.value;
+  if (!cookieVal) return;
+
+  return cookieVal;
 }
