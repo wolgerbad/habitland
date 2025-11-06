@@ -5,6 +5,7 @@ import { useFormStatus } from 'react-dom';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 
+
 export default function SignUpClient() {
   const [error, setError] = useState('');
 
