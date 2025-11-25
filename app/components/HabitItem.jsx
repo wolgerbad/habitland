@@ -143,7 +143,7 @@ export default function HabitItem({ habit }) {
           <h2 className="text-fgPrimary">{optimisticHabitName}</h2>
           <div className="flex items-center gap-3">
             <button
-              className="p-2 bg-bgButton/50 rounded-sm hover:bg-bgButton/70 text-fgPrimary"
+              className="hidden sm:block p-2 bg-bgButton/50 rounded-md hover:bg-bgButton/70 text-fgPrimary"
               onClick={() => {
                 setIsModalOpen(true);
               }}
@@ -161,18 +161,38 @@ export default function HabitItem({ habit }) {
           </div>
         </header>
 
-        <button
-          key={habit.id}
-          onClick={async () => await handleLog(todaysLog)}
-          className={`w-full justify-center items-center gap-2 flex px-4 py-2 text-lg ${
-            todaysLog?.completed
-              ? 'bg-bgSuccess hover:bgSuccess/80 text-white'
-              : 'text-fgPrimary bg-bgButton/20 hover:bg-bgButton/30'
-          }`}
-        >
-          <SiTicktick />
-          {!isCompletedToday ? 'Mark Complete' : 'Completed Today!'}
-        </button>
+        <div className="flex gap-2">
+          <button
+            onClick={async () => await handleLog(todaysLog)}
+            className={`sm:hidden flex-1 justify-center items-center gap-2 flex px-4 py-2 rounded-md ${
+              todaysLog?.completed
+                ? 'bg-bgSuccess hover:bgSuccess/80 text-white'
+                : 'text-fgPrimary bg-bgButton/20 hover:bg-bgButton/30'
+            }`}
+          >
+            <SiTicktick />
+            {!isCompletedToday ? 'Done?' : 'Done!'}
+          </button>
+          <button
+            onClick={async () => await handleLog(todaysLog)}
+            className={`hidden sm:flex flex-1 justify-center items-center gap-2 px-4 py-2 text-lg rounded-md ${
+              todaysLog?.completed
+                ? 'bg-bgSuccess hover:bgSuccess/80 text-white'
+                : 'text-fgPrimary bg-bgButton/20 hover:bg-bgButton/30'
+            }`}
+          >
+            <SiTicktick />
+            {!isCompletedToday ? 'Mark Complete' : 'Completed Today!'}
+          </button>
+          <button
+            className="sm:hidden flex-1 p-2 bg-bgButton/20 rounded-md hover:bg-bgButton/70 text-fgPrimary"
+            onClick={() => {
+              setIsModalOpen(true);
+            }}
+          >
+            Details
+          </button>
+        </div>
       </div>
       {isModalOpen && (
         <Modal
@@ -184,17 +204,17 @@ export default function HabitItem({ habit }) {
           isEditable={true}
         >
           <div className="grid grid-cols-2 gap-4 mb-4">
-            <div className="bg-blue-100 p-4 flex flex-col text-blue-800 font-semibold rounded-lg">
+            <div className="bg-blue-100 p-4 flex flex-col justify-between text-blue-800 font-semibold rounded-lg">
               <span className="flex items-center gap-1 mb-2">
-                <FaCalendar />
+                <FaCalendar className="hidden sm:block" />
                 Completion Rate
               </span>
               <span>{completedRate}% </span>
               <span>Last 30 Day</span>
             </div>
-            <div className="bg-bgSuccess/30 p-4 flex flex-col text-bgSuccess font-semibold rounded-lg">
+            <div className="bg-bgSuccess/30 p-4 flex flex-col justify-between text-bgSuccess font-semibold rounded-lg">
               <span className="flex items-center gap-1 mb-2">
-                <IoMdStats />
+                <IoMdStats className="hidden sm:block" />
                 Total Completions
               </span>
               <span className="text-2xl font-bold">{totalCompletion}</span>
@@ -221,7 +241,7 @@ export default function HabitItem({ habit }) {
                 <Legend />
                 <Bar
                   dataKey="completed"
-                  fill={`${isDark ? '#6d28d9' : '#7c3aed'}`}
+                  fill={`${isDark ? '#6d28d9' : '#22c55e'}`}
                 />
               </BarChart>
             </ResponsiveContainer>

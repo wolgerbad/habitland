@@ -9,7 +9,7 @@ export default function Theme() {
   return (
     <button
       onClick={() => setIsDarkMode((t) => !t)}
-      className="absolute top-10 right-10 text-fgPrimary"
+      className="hidden md:block absolute top-10 right-10 text-fgPrimary"
     >
       {isDarkMode ? (
         <MdLightMode className="text-3xl text-yellow-400" />

@@ -38,7 +38,7 @@ function Modal({
       onClick={onClose}
     >
       <div
-        className="bg-bgPrimary fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-2xl p-6 min-w-[40rem]  max-h-[40rem]  overflow-scroll overflow-x-hidden"
+        className="bg-bgPrimary fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-lg shadow-2xl p-6 min-w-full md:min-w-[40rem] max-h-[40rem]  overflow-scroll overflow-x-hidden"
         onClick={(e) => e.stopPropagation()}
       >
         <button

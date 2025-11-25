@@ -38,21 +38,20 @@ export default function AccountClient({ user, createdAt, habitsLength }) {
                 <Button />
               </form>
             </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
-              <div className="p-4 rounded-lg bg-bgButton/20">
-                <p className="text-xs text-gray-500">User ID</p>
-                <p className="font-medium truncate text-fgPrimary">{user.id}</p>
-              </div>
-              <div className="p-4 rounded-lg bg-bgButton/20">
-                <p className="text-xs text-gray-500">Joined</p>
-                <p className="font-medium text-fgPrimary">{createdAt}</p>
-              </div>
-              <div className="p-4 rounded-lg bg-bgButton/20">
-                <p className="text-xs text-gray-500">Habits</p>
-                <p className="font-medium text-fgPrimary">{habitsLength}</p>
-              </div>
-            </div>
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-6">
+          <div className="p-4 rounded-lg bg-bgButton/20">
+            <p className="text-xs text-gray-500">User ID</p>
+            <p className="font-medium truncate text-fgPrimary">{user.id}</p>
+          </div>
+          <div className="p-4 rounded-lg bg-bgButton/20">
+            <p className="text-xs text-gray-500">Joined</p>
+            <p className="font-medium text-fgPrimary">{createdAt}</p>
+          </div>
+          <div className="p-4 rounded-lg bg-bgButton/20">
+            <p className="text-xs text-gray-500">Habits</p>
+            <p className="font-medium text-fgPrimary">{habitsLength}</p>
           </div>
         </div>
       </section>
