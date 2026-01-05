@@ -34,27 +34,22 @@ function AddNewHabit() {
         <CiCirclePlus />
       </div>
       {isOpen && (
-        <Modal onClose={() => setIsOpen(false)} title="">
+        <Modal isOpen={isOpen} onClose={() => setIsOpen(false)} title="">
+          <h2 className="text-5xl text-center font-semibold mb-8">NEW HABIT</h2>
           <form onSubmit={handleSubmit}>
-            <label className="block mb-2 font-medium text-fgPrimary">
-              Habit Name
-            </label>
+            <label>Name</label>
             <input
               value={habitName}
               onChange={(e) => setHabitName(e.target.value)}
               type="text"
-              className="w-full p-2 border border-buttonCta rounded mb-4 focus:outline-none focus:ring-2 focus:ring-buttonCta"
+              className="w-full p-4 border-2 border-buttonCta rounded mb-6 focus:outline-none focus:ring-2 focus:ring-buttonCta"
               placeholder="e.g., Drink Water"
             />
-            <div className="flex justify-end gap-2">
+            <div className="w-full">
               <button
-                className="bg-gray-200 p-2 rounded-lg"
-                onClick={() => setIsOpen(false)}
-                type="button"
+                className="bg-blue-800 p-3 text-2xl font-semibold text-white rounded-lg w-full "
+                type="submit"
               >
-                Cancel
-              </button>
-              <button className="bg-buttonCta p-2 rounded-lg" type="submit">
                 Create Habit
               </button>
             </div>

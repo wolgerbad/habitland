@@ -33,38 +33,80 @@ export default function LoginClient() {
   }
 
   return (
-    <div className="m-10 max-w-72 text-fgPrimary">
-      <h1 className="bg-neutral-200 p-2 text-gray-700 rounded-lg mb-4">
-        ⚠️ This is a beta version. Some functions may not work as expected.
-      </h1>
-      <form className="flex flex-col gap-2" action={handleLogin}>
-        <div>
-          <label className="block">Email:</label>
-          <input
-            type="email"
-            name="email"
-            required
-            className="border-2 border-fgPrimary w-full px-2 py-0.5 text-black"
-          />
+    <div className="min-h-[60vh] flex items-center justify-center p-6">
+      <div className="w-full max-w-md bg-bgPrimary text-fgPrimary backdrop-blur-sm rounded-2xl shadow-xl border border-borderPrimary dark:border-gray-800 p-8">
+        <div className="flex items-center gap-3 mb-6">
+          <div className="hidden sm:flex w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 items-center justify-center text-white text-lg font-semibold">
+            H
+          </div>
+          <div>
+            <h2 className="text-2xl font-semibold">Welcome back</h2>
+            <p className="text-sm text-fgPrimary/60">
+              Log in to your Habitland account
+            </p>
+          </div>
         </div>
-        <div>
-          <label className="block">Password:</label>
-          <input
-            type="password"
-            name="password"
-            className="border-2 border-gray-900 w-full px-2 py-0.5 text-black"
-          />
+
+        <div className="mb-4">
+          <div className="rounded-md bg-yellow-50/80 p-3 text-sm text-yellow-800 border border-yellow-100">
+            ⚠️ This is a beta version. Some functions may not work as expected.
+          </div>
         </div>
-        {error && <p className="text-red-800 text-sm max-w-80">{error}</p>}
-        <div className="self-end mb-8">
-          <LoginButton />
+
+        <form className="flex flex-col gap-4" action={handleLogin}>
+          <div>
+            <label
+              htmlFor="email"
+              className="text-sm font-medium text-fgPrimary/80 block mb-1"
+            >
+              Email
+            </label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              placeholder="you@company.com"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-fgPrimary/80 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="password"
+              className="text-sm font-medium text-fgPrimary/80 block mb-1"
+            >
+              Password
+            </label>
+            <input
+              id="password"
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-fgPrimary/80 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+            />
+          </div>
+
+          {error && (
+            <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-md p-2">
+              {error}
+            </p>
+          )}
+
+          <div className="flex items-center justify-between mt-1">
+            <div className="text-sm text-gray-600">&nbsp;</div>
+            <div>
+              <LoginButton />
+            </div>
+          </div>
+        </form>
+
+        <div className="mt-6 text-center text-sm flex justify-between items-center">
+          Don&apos;t have an account?{' '}
+          <Link href="/signup" className="text-blue-500 font-medium underline">
+            Sign up
+          </Link>
         </div>
-      </form>
-      <div className="flex justify-between">
-        Have no account?{' '}
-        <Link href="/signup" className="underline decoration-blue-500">
-          Sign Up!
-        </Link>
       </div>
     </div>
   );
@@ -77,7 +119,7 @@ function LoginButton() {
     <button
       className={`${
         pending ? 'bg-gray-200 cursor-not-allowed text-black' : ''
-      } border-2 border-fgPrimary px-4 py-1`}
+      } border-2 border-fgPrimary px-4 py-2 rounded-lg hover:bg-fgPrimary/10`}
     >
       {pending ? 'Logging in..' : 'Log in'}
     </button>

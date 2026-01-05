@@ -7,7 +7,7 @@ import { checkJwtValidity, getHabitLogs, getHabits } from './_lib/helpers';
 import HabitContextProvider from './components/HabitContext';
 
 export const metadata = {
-  title: 'HabitLand',
+  title: 'HabitLand - Build healthy habits',
   description: 'Track your habits and build better routines',
 };
 

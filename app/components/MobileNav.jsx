@@ -7,7 +7,7 @@ import AddNewHabit from './AddNewHabit';
 export default function MobileNav() {
   return (
     <div className="fixed bottom-4 left-1/2 -translate-x-1/2 bg-gradient-to-tr font-semibold from-mobileNavFrom to-mobileNavTo text-white min-w-72 sm:min-w-96 text-center px-6 py-3 rounded-full flex justify-around items-center">
-      <Link href="/" className="flex flex-col items-center">
+      <Link href="/" prefetch className="flex flex-col items-center">
         <PiCirclesThreePlus className="text-xl" />
         my habits
       </Link>
@@ -15,7 +15,7 @@ export default function MobileNav() {
       <button>
         <AddNewHabit />
       </button>
-      <Link href="/account" className="flex flex-col items-center">
+      <Link href="/account" prefetch className="flex flex-col items-center">
         <PiUser className="text-xl" />
         user
       </Link>

@@ -24,6 +24,8 @@ import {
 import { IoMdStats } from 'react-icons/io';
 import { useRouter } from 'next/navigation';
 import { useHabit } from './HabitContext';
+import { DrawerTrigger } from '@/components/ui/drawer';
+import { Button } from '@/components/ui/button';
 
 function getLastXDaysLogs(logs, x) {
   const today = new Date();
@@ -196,6 +198,7 @@ export default function HabitItem({ habit }) {
       </div>
       {isModalOpen && (
         <Modal
+          isOpen={isModalOpen}
           onClose={() => setIsModalOpen(false)}
           title={optimisticHabitName}
           optimisticHabits={optimisticHabits}
@@ -203,7 +206,7 @@ export default function HabitItem({ habit }) {
           id={habit.id}
           isEditable={true}
         >
-          <div className="grid grid-cols-2 gap-4 mb-4">
+          <div className="grid grid-cols-2 gap-4 mb-4 w-full">
             <div className="bg-blue-100 p-4 flex flex-col justify-between text-blue-800 font-semibold rounded-lg">
               <span className="flex items-center gap-1 mb-2">
                 <FaCalendar className="hidden sm:block" />

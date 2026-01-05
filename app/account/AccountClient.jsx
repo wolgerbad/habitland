@@ -23,7 +23,7 @@ export default function AccountClient({ user, createdAt, habitsLength }) {
 
       <section className="bg-bgPrimary rounded-xl shadow-lg p-6 mb-6">
         <div className="flex items-start gap-4">
-          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-gray-600 to-gray-900 text-white flex items-center justify-center text-xl font-semibold">
+          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-gray-600 to-gray-900 text-white flex items-center justify-center text-xl font-semibold">
             {user.name.slice(0, 1)}
           </div>
           <div className="flex-1">
