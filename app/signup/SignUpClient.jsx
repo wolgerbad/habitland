@@ -131,7 +131,7 @@ function SignUpButton() {
   return (
     <button
       className={`${
-        pending ? 'bg-gray-200 cursor-not-allowed' : ''
+        pending ? 'bg-bgButton/60 cursor-not-allowed' : ''
       } border-2 border-fgPrimary px-3 py-1`}
     >
       {pending ? 'Signing up..' : 'Sign Up'}

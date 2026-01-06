@@ -42,7 +42,7 @@ function AddNewHabit() {
               value={habitName}
               onChange={(e) => setHabitName(e.target.value)}
               type="text"
-              className="w-full p-4 border-2 border-buttonCta rounded mb-6 focus:outline-none focus:ring-2 focus:ring-buttonCta"
+              className="w-full p-4 border-2 text-black border-buttonCta rounded mb-6 focus:outline-none focus:ring-2 focus:ring-buttonCta"
               placeholder="e.g., Drink Water"
             />
             <div className="w-full">

@@ -67,7 +67,7 @@ export default function LoginClient() {
               name="email"
               required
               placeholder="you@company.com"
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-fgPrimary/80 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full rounded-lg border text-black border-gray-200 px-3 py-2 bg-white  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
             />
           </div>
 
@@ -83,7 +83,7 @@ export default function LoginClient() {
               type="password"
               name="password"
               placeholder="••••••••"
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-fgPrimary/80 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-black bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
             />
           </div>
 
@@ -118,7 +118,7 @@ function LoginButton() {
   return (
     <button
       className={`${
-        pending ? 'bg-gray-200 cursor-not-allowed text-black' : ''
+        pending ? 'bg-bgButton/60 cursor-not-allowed text-black' : ''
       } border-2 border-fgPrimary px-4 py-2 rounded-lg hover:bg-fgPrimary/10`}
     >
       {pending ? 'Logging in..' : 'Log in'}
