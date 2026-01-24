@@ -23,6 +23,7 @@ module.exports = {
   			buttonHover: 'rgba(var(--hover-button))',
   			bgPrimary: 'rgba(var(--bg-primary))',
   			itemBg: 'rgba(var(--item-bg))',
+			buttonForm: 'rgba(var(--button-form))',
   			bgSecondary: 'rgba(var(--bg-secondary))',
   			buttonCta: 'rgba(var(--button-cta))',
   			background: 'hsl(var(--background))',

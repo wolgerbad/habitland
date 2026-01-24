@@ -37,7 +37,7 @@ export default function QuickAdd() {
 
   async function handleAddHabit(habitName) {
     const randomId = nanoid()
-    
+
     const habitNameExists = optimisticHabits.find(
       (habit) => habit.name === habitName
     );
@@ -56,7 +56,7 @@ export default function QuickAdd() {
   }
 
   return (
-    <div className="m-4">
+    <div className="px-4 mt-4">
       <h2 className="ml-3 mb-2 text-fgPrimary">Quick Add</h2>
       <div className="flex flex-wrap">
         {quickList.map((habit) => (

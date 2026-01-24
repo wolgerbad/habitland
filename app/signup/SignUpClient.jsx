@@ -78,8 +78,8 @@ const [state, action, pending] = useActionState(signup, initialState)
             <button
               disabled={pending}
               className={`${
-                pending ? 'bg-gray-400 cursor-not-allowed' : 'bg-buttonCta hover:bg-buttonCta/90'
-              } px-6 py-2 rounded-lg`}
+                pending ? 'bg-buttonForm/60 cursor-not-allowed' : 'bg-buttonForm hover:bg-buttonForm/90'
+              } text-white font-semibold px-6 py-2 rounded-lg`}
           >
             {pending ? 'Signing up..' : 'Sign Up'}
           </button>

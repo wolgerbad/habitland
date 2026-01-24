@@ -8,7 +8,7 @@ export default function HabitList() {
   const { optimisticHabits } = useHabit();
 
   return (
-    <div>
+    <div className='flex flex-col gap-2'>
       <QuickAdd />
       {!optimisticHabits.length && (
         <p className="mt-10 text-center text-fgPrimary/70 px-4 py-2">

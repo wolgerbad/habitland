@@ -66,8 +66,8 @@ export default function LoginClient() {
             <button
               disabled={pending}
                 className={`${
-                  pending ? 'bg-gray-400 cursor-not-allowed text-black' : 'bg-buttonCta hover:bg-buttonCta/90 text-white'
-                } font-semibold rounded-lg px-6 py-2`}
+                  pending ? 'bg-buttonForm/60 cursor-not-allowed' : 'bg-buttonForm hover:bg-buttonForm/90 '
+                } text-white font-semibold rounded-lg px-6 py-2`}
             >
               {pending ? 'Logging in..' : 'Login'}
            </button>

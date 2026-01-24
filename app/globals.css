@@ -17,6 +17,7 @@
   --bg-primary: 255, 255, 255;
   --item-bg: transparent;
   --button-cta: 96, 165, 250;
+  --button-form: 96, 145, 280;
 }
 
 .dark {
@@ -34,6 +35,7 @@
   --bg-primary: 17, 24, 39;
   --item-bg: 31, 41, 55, 0.7;
   --button-cta: 167, 139, 250;
+  --button-form: 124, 58, 237;
 }
 
 
