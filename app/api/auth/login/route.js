@@ -2,8 +2,19 @@ import { NextResponse } from 'next/server';
 import { supabase } from '../../../_lib/supabase';
 import bcrypt from 'bcryptjs';
 import { generateToken } from '../../../_lib/helpers';
+import { headers } from 'next/headers';
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
+
+const ratelimit = new Ratelimit({
+  redis: Redis.fromEnv(),
+  limiter: Ratelimit.slidingWindow(5, '15m'),
+  prefix: 'habitland'
+})
 
 export async function POST(req) {
+  const h = (await headers())
+
   const { email, password } = await req.json();
 
   if (!email || !password)
@@ -13,6 +24,13 @@ export async function POST(req) {
         status: 404,
       }
     );
+
+  const ip = h.get('x-ip-token') ?? h.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    "unknown";
+
+  const rl = await ratelimit.limit(ip)
+
+  if(!rl.success) return NextResponse.json({error: 'Too many requests. Try again later'}, {status: 500})
 
   let { data: user, error } = await supabase
     .from('users')

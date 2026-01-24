@@ -32,31 +32,19 @@ export default function SignUpClient() {
   }
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-2xl shadow-xl border border-gray-200 dark:border-gray-800 p-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 flex items-center justify-center text-white text-lg font-semibold">
-            H
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold">Create your account</h2>
+    <div className="mt-8 min-h-[60vh] flex flex-col gap-4 items-center justify-center p-6">
+          <div className='flex flex-col items-center gap-2'>
+            <h2 className="text-buttonCta text-3xl font-semibold">Create your account</h2>
             <p className="text-sm text-gray-500">
               Sign up to start building healthy habits
             </p>
           </div>
-        </div>
-
-        <div className="mb-4">
-          <div className="rounded-md bg-yellow-50/80 p-3 text-sm text-yellow-800 border border-yellow-100">
-            ⚠️ This is a beta version. Some functions may not work as expected.
-          </div>
-        </div>
-
+      <div className="w-full max-w-md bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8">
         <form className="flex flex-col gap-4" action={handleSignUp}>
           <div>
             <label
               htmlFor="name"
-              className="text-sm font-medium text-gray-700 block mb-1"
+              className="text-sm font-medium text-fgPrimary block mb-1"
             >
               Name
             </label>
@@ -64,15 +52,14 @@ export default function SignUpClient() {
               id="name"
               name="name"
               type="text"
-              placeholder="Your full name"
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full rounded-lg border border-borderPrimary px-3 py-2 bg-bgPrimary text-fgPrimary placeholder-gray-400 focus:outline-none transition"
             />
           </div>
 
           <div>
             <label
               htmlFor="email"
-              className="text-sm font-medium text-gray-700 block mb-1"
+              className="text-sm font-medium text-fgPrimary block mb-1"
             >
               Email
             </label>
@@ -80,15 +67,14 @@ export default function SignUpClient() {
               id="email"
               name="email"
               type="email"
-              placeholder="you@company.com"
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full rounded-lg border border-borderPrimary px-3 py-2 bg-bgPrimary text-fgPrimary focus:outline-none  transition"
             />
           </div>
 
           <div>
             <label
               htmlFor="password"
-              className="text-sm font-medium text-gray-700 block mb-1"
+              className="text-sm font-medium text-fgPrimary block mb-1"
             >
               Password
             </label>
@@ -96,8 +82,7 @@ export default function SignUpClient() {
               id="password"
               name="password"
               type="password"
-              placeholder="Create a password"
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 bg-white text-gray-900 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full rounded-lg border border-borderPrimary px-3 py-2 bg-bgPrimary text-fgPrimary focus:outline-none transition"
             />
           </div>
 
@@ -115,9 +100,9 @@ export default function SignUpClient() {
           </div>
         </form>
 
-        <div className="mt-6 text-center text-sm text-gray-600">
+        <div className="mt-6 text-center text-sm flex justify-between items-center">
           Already have an account?{' '}
-          <Link href="/login" className="text-indigo-600 font-medium underline">
+          <Link href="/login" className="text-fgPrimary font-medium underline">
             Log in
           </Link>
         </div>
@@ -130,9 +115,10 @@ function SignUpButton() {
   const { pending } = useFormStatus();
   return (
     <button
+      disabled={pending}
       className={`${
-        pending ? 'bg-bgButton/60 cursor-not-allowed' : ''
-      } border-2 border-fgPrimary px-3 py-1`}
+        pending ? 'bg-gray-400 cursor-not-allowed' : ''
+      } bg-buttonCta hover:bg-buttonCta/90 px-6 py-2 rounded-lg`}
     >
       {pending ? 'Signing up..' : 'Sign Up'}
     </button>

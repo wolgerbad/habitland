@@ -10,7 +10,7 @@ export default function loading() {
       <ClipLoader
         color="buttonCta"
         cssOverride={override}
-        size={150}
+        size={30}
         aria-label="Loading Spinner"
         data-testid="loader"
       />

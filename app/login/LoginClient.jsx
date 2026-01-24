@@ -1,12 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-// import { signIn } from '../lib/actions';
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
-import { checkJwtValidity, generateToken } from '../_lib/helpers';
-import { getCookie } from '../_lib/actions';
 
 export default function LoginClient() {
   const [error, setError] = useState('');
@@ -33,26 +30,14 @@ export default function LoginClient() {
   }
 
   return (
-    <div className="min-h-[60vh] flex items-center justify-center p-6">
-      <div className="w-full max-w-md bg-bgPrimary text-fgPrimary backdrop-blur-sm rounded-2xl shadow-xl border border-borderPrimary dark:border-gray-800 p-8">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="hidden sm:flex w-12 h-12 rounded-xl bg-gradient-to-br from-indigo-500 via-purple-500 to-pink-500 items-center justify-center text-white text-lg font-semibold">
-            H
-          </div>
-          <div>
-            <h2 className="text-2xl font-semibold">Welcome back</h2>
+    <div className="min-h-[60vh] mt-8 flex flex-col gap-6 items-center justify-center p-6">
+          <div className='flex flex-col gap-2 items-center'>
+            <h2 className="text-buttonCta text-3xl font-semibold">Sign in to your account</h2>
             <p className="text-sm text-fgPrimary/60">
-              Log in to your Habitland account
+              Welcome back! Please enter your details
             </p>
           </div>
-        </div>
-
-        <div className="mb-4">
-          <div className="rounded-md bg-yellow-50/80 p-3 text-sm text-yellow-800 border border-yellow-100">
-            ⚠️ This is a beta version. Some functions may not work as expected.
-          </div>
-        </div>
-
+      <div className="w-full max-w-md bg-bgPrimary text-fgPrimary backdrop-blur-sm rounded-xl shadow-sm border border-borderPrimary dark:border-gray-800 p-8 ">
         <form className="flex flex-col gap-4" action={handleLogin}>
           <div>
             <label
@@ -66,8 +51,7 @@ export default function LoginClient() {
               type="email"
               name="email"
               required
-              placeholder="you@company.com"
-              className="w-full rounded-lg border text-black border-gray-200 px-3 py-2 bg-white  placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              className="w-full rounded-lg border text-fgPrimary border-borderPrimary px-3 py-2 bg-bgPrimary placeholder-gray-400 focus:outline-none transition"
             />
           </div>
 
@@ -82,8 +66,8 @@ export default function LoginClient() {
               id="password"
               type="password"
               name="password"
-              placeholder="••••••••"
-              className="w-full rounded-lg border border-gray-200 px-3 py-2 text-black bg-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-400 transition"
+              // placeholder="••••••••"
+              className="w-full rounded-lg border border-borderPrimary px-3 py-2 text-fgPrimary bg-bgPrimary placeholder-gray-400 focus:outline-none transition"
             />
           </div>
 
@@ -103,7 +87,7 @@ export default function LoginClient() {
 
         <div className="mt-6 text-center text-sm flex justify-between items-center">
           Don&apos;t have an account?{' '}
-          <Link href="/signup" className="text-blue-500 font-medium underline">
+          <Link href="/signup" className="text-fgPrimary font-medium underline">
             Sign up
           </Link>
         </div>
@@ -117,11 +101,12 @@ function LoginButton() {
 
   return (
     <button
+     disabled={pending}
       className={`${
-        pending ? 'bg-bgButton/60 cursor-not-allowed text-black' : ''
-      } border-2 border-fgPrimary px-4 py-2 rounded-lg hover:bg-fgPrimary/10`}
+        pending ? 'bg-gray-400 cursor-not-allowed text-black' : ''
+      } bg-buttonCta text-white font-semibold hover:bg-buttonCta/90 rounded-lg hover:bg-fgPrimary/3 px-6 py-2`}
     >
-      {pending ? 'Logging in..' : 'Log in'}
+      {pending ? 'Logging in..' : 'Login'}
     </button>
   );
 }

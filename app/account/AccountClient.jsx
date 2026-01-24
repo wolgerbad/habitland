@@ -21,7 +21,7 @@ export default function AccountClient({ user, createdAt, habitsLength }) {
     <div className="max-w-2xl mx-auto px-4 py-8">
       <h1 className="text-2xl font-bold mb-6 text-fgPrimary">Account</h1>
 
-      <section className="bg-bgPrimary rounded-xl shadow-lg p-6 mb-6">
+      <section className="bg-bgPrimary rounded-xl shadow-sm p-6 mb-6">
         <div className="flex items-start gap-4">
           <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-tr from-gray-600 to-gray-900 text-white flex items-center justify-center text-xl font-semibold">
             {user.name.slice(0, 1)}
@@ -56,7 +56,7 @@ export default function AccountClient({ user, createdAt, habitsLength }) {
         </div>
       </section>
 
-      <section className="bg-bgPrimary rounded-xl shadow-lg p-6">
+      <section className="bg-bgPrimary rounded-xl shadow-sm p-6">
         <h2 className="text-sm font-semibold text-fgPrimary mb-4">
           Preferences
         </h2>
@@ -99,8 +99,8 @@ function Button() {
       type="submit"
       disabled={pending}
       className={`${
-        pending ? 'cursor-not-allowed' : ''
-      } px-3 py-2 rounded-lg bg-bgButton hover:bg-buttonHover text-fgPrimary text-sm transition`}
+        pending ? 'cursor-not-allowed bg-gray-700 text-white' : 'bg-bgButton hover:bg-buttonHover text-fgPrimary'
+      } px-3 py-2 rounded-lg text-sm transition`}
     >
       {pending ? 'Logging Out..' : 'Log out'}
     </button>
