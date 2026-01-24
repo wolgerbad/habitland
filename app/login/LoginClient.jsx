@@ -1,33 +1,16 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
 import { useFormStatus } from 'react-dom';
+import { login } from '../_lib/actions';
+import { useActionState } from 'react';
+
+const initialState = {
+  error: null
+}
 
 export default function LoginClient() {
-  const [error, setError] = useState('');
-
-  const router = useRouter();
-
-  async function handleLogin(formData) {
-    setError('');
-    const email = formData.get('email');
-    const password = formData.get('password');
-
-    const res = await fetch(`/api/auth/login`, {
-      method: 'POST',
-      body: JSON.stringify({ email, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-    const result = await res.json();
-
-    if (result.error) return setError(result.error);
-
-    router.refresh();
-  }
+  const [state, action, pending] = useActionState(login, initialState)
 
   return (
     <div className="min-h-[60vh] mt-8 flex flex-col gap-6 items-center justify-center p-6">
@@ -38,7 +21,7 @@ export default function LoginClient() {
             </p>
           </div>
       <div className="w-full max-w-md bg-bgPrimary text-fgPrimary backdrop-blur-sm rounded-xl shadow-sm border border-borderPrimary dark:border-gray-800 p-8 ">
-        <form className="flex flex-col gap-4" action={handleLogin}>
+        <form className="flex flex-col gap-4" action={action}>
           <div>
             <label
               htmlFor="email"
@@ -71,16 +54,23 @@ export default function LoginClient() {
             />
           </div>
 
-          {error && (
+          {state?.error && (
             <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-md p-2">
-              {error}
+              {state?.error}
             </p>
           )}
 
           <div className="flex items-center justify-between mt-1">
             <div className="text-sm text-gray-600">&nbsp;</div>
             <div>
-              <LoginButton />
+            <button
+              disabled={pending}
+                className={`${
+                  pending ? 'bg-gray-400 cursor-not-allowed text-black' : 'bg-buttonCta hover:bg-buttonCta/90 text-white'
+                } font-semibold rounded-lg px-6 py-2`}
+            >
+              {pending ? 'Logging in..' : 'Login'}
+           </button>
             </div>
           </div>
         </form>
@@ -93,20 +83,5 @@ export default function LoginClient() {
         </div>
       </div>
     </div>
-  );
-}
-
-function LoginButton() {
-  const { pending } = useFormStatus();
-
-  return (
-    <button
-     disabled={pending}
-      className={`${
-        pending ? 'bg-gray-400 cursor-not-allowed text-black' : ''
-      } bg-buttonCta text-white font-semibold hover:bg-buttonCta/90 rounded-lg hover:bg-fgPrimary/3 px-6 py-2`}
-    >
-      {pending ? 'Logging in..' : 'Login'}
-    </button>
   );
 }

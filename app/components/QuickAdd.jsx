@@ -3,6 +3,7 @@
 import { startTransition } from 'react';
 import { addNewHabit } from '../_lib/actions';
 import { useHabit } from './HabitContext';
+import { nanoid } from 'nanoid';
 
 export default function QuickAdd() {
   const { optimisticHabits, handleOptimisticHabits, userId } = useHabit();
@@ -35,6 +36,8 @@ export default function QuickAdd() {
   ];
 
   async function handleAddHabit(habitName) {
+    const randomId = nanoid()
+    
     const habitNameExists = optimisticHabits.find(
       (habit) => habit.name === habitName
     );
@@ -45,6 +48,7 @@ export default function QuickAdd() {
       handleOptimisticHabits({
         type: 'add',
         payload: habitName,
+        id: randomId
       })
     );
 
@@ -58,7 +62,7 @@ export default function QuickAdd() {
         {quickList.map((habit) => (
           <button
             onClick={async () => await handleAddHabit(habit.icon + habit.habit)}
-            key={habit}
+            key={habit.habit}
             className="flex justify-center items-center gap-1 flex-1 m-1 px-2 py-1 bg-bgButton/40 hover:bg-buttonHover/60 text-fgPrimary rounded-full transition-all duration-200 ease-out
         hover:scale-105 hover:z-20 cursor-pointer"
           >

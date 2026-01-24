@@ -1,9 +1,10 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormStatus } from 'react-dom';
 import { useDarkMode } from '../components/DarkModeContext';
+import { logout } from '../_lib/actions';
 
 export default function AccountClient({ user, createdAt, habitsLength }) {
   const [toggle, setToggle] = useState(true);
@@ -11,11 +12,6 @@ export default function AccountClient({ user, createdAt, habitsLength }) {
   const { isDarkMode, setIsDarkMode } = useDarkMode();
 
   const router = useRouter();
-
-  async function handleLogout() {
-    await fetch('/api/auth/logout');
-    router.refresh();
-  }
 
   return (
     <div className="max-w-2xl mx-auto px-4 py-8">
@@ -34,7 +30,7 @@ export default function AccountClient({ user, createdAt, habitsLength }) {
                 </p>
                 <p className="text-sm text-gray-500">{user.email}</p>
               </div>
-              <form action={handleLogout} className="flex items-center gap-2">
+              <form action={logout} className="flex items-center gap-2">
                 <Button />
               </form>
             </div>

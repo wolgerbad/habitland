@@ -33,8 +33,8 @@ export async function getUser(id) {
   return { id, name, email, created_at };
 }
 
-export function generateToken(id) {
-  const token = jwt.sign({ id }, process.env.JWT_SECRET);
+export async function generateToken(id) {
+  const token = await jwt.sign({ id }, process.env.JWT_SECRET);
   return token;
 }
 

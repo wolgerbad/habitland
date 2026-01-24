@@ -1,6 +1,5 @@
 import { getHabitLogs, getHabits } from '../_lib/helpers';
 import HabitList from './HabitList';
-import QuickAdd from './QuickAdd';
 
 export default async function Main(userId) {
   const { userId: id } = userId;

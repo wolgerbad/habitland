@@ -2,34 +2,14 @@
 
 import Link from 'next/link';
 import { useFormStatus } from 'react-dom';
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { useActionState} from 'react';
+import { signup } from '../_lib/actions';
 
+const initialState = {
+  error: null
+}
 export default function SignUpClient() {
-  const [error, setError] = useState('');
-
-  const router = useRouter();
-
-  async function handleSignUp(formData) {
-    setError('');
-    const name = formData.get('name');
-    const email = formData.get('email');
-    const password = formData.get('password');
-
-    const res = await fetch('/api/auth/signup', {
-      method: 'POST',
-      body: JSON.stringify({ name, email, password }),
-      headers: {
-        'Content-Type': 'application/json',
-      },
-    });
-
-    const result = await res.json();
-
-    if (result.error) return setError(result.error);
-
-    router.refresh();
-  }
+const [state, action, pending] = useActionState(signup, initialState)
 
   return (
     <div className="mt-8 min-h-[60vh] flex flex-col gap-4 items-center justify-center p-6">
@@ -40,7 +20,7 @@ export default function SignUpClient() {
             </p>
           </div>
       <div className="w-full max-w-md bg-white/80 dark:bg-gray-900/80 backdrop-blur-sm rounded-lg shadow-sm border border-gray-200 dark:border-gray-800 p-8">
-        <form className="flex flex-col gap-4" action={handleSignUp}>
+        <form className="flex flex-col gap-4" action={action}>
           <div>
             <label
               htmlFor="name"
@@ -86,16 +66,23 @@ export default function SignUpClient() {
             />
           </div>
 
-          {error && (
+          {state.error && (
             <p className="text-sm text-red-700 bg-red-50 border border-red-100 rounded-md p-2">
-              {error}
+              {state.error}
             </p>
           )}
 
           <div className="flex items-center justify-between mt-1">
             <div className="text-sm text-gray-600">&nbsp;</div>
             <div>
-              <SignUpButton />
+            <button
+              disabled={pending}
+              className={`${
+                pending ? 'bg-gray-400 cursor-not-allowed' : 'bg-buttonCta hover:bg-buttonCta/90'
+              } px-6 py-2 rounded-lg`}
+          >
+            {pending ? 'Signing up..' : 'Sign Up'}
+          </button>
             </div>
           </div>
         </form>
@@ -108,19 +95,5 @@ export default function SignUpClient() {
         </div>
       </div>
     </div>
-  );
-}
-
-function SignUpButton() {
-  const { pending } = useFormStatus();
-  return (
-    <button
-      disabled={pending}
-      className={`${
-        pending ? 'bg-gray-400 cursor-not-allowed' : ''
-      } bg-buttonCta hover:bg-buttonCta/90 px-6 py-2 rounded-lg`}
-    >
-      {pending ? 'Signing up..' : 'Sign Up'}
-    </button>
   );
 }

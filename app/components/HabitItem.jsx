@@ -26,6 +26,7 @@ import { useRouter } from 'next/navigation';
 import { useHabit } from './HabitContext';
 import { DrawerTrigger } from '@/components/ui/drawer';
 import { Button } from '@/components/ui/button';
+import { nanoid } from 'nanoid';
 
 function getLastXDaysLogs(logs, x) {
   const today = new Date();
@@ -103,7 +104,7 @@ export default function HabitItem({ habit }) {
   }
 
   async function handleLog(log) {
-    const randomId = Math.floor(Math.random() * 100000);
+    const randomId = nanoid()
 
     if (log.completed) {
       startTransition(() =>
@@ -118,7 +119,6 @@ export default function HabitItem({ habit }) {
         })
       );
       await addNewLog({
-        id: randomId,
         date: log.date,
         completed: 1,
         habit_id: habit.id,
