@@ -29,7 +29,7 @@ export async function POST(req) {
 
   const rl = await ratelimit.limit(ip)
   
-  if(!rl.success) return NextResponse.json({error: 'Too many requests. Try again later', status: 500})
+  if(!rl.success) return NextResponse.json({error: 'Too many requests. Try again later'}, {status: 400})
 
 
   const salt = await bcrypt.genSalt();
